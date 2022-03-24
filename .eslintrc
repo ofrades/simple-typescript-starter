@@ -4,20 +4,48 @@
   "plugins": [
     "@typescript-eslint",
     "prettier",
-    "jest"
+    "simple-import-sort"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "no-console": 1,
-    "prettier/prettier": 2
+    "eqeqeq": [
+      2,
+      "smart"
+    ],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "sort-imports": "off",
+    "import/order": "off",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^\\u0000"
+          ],
+          [
+            "^@?\\w"
+          ],
+          [
+            "^[^.]"
+          ],
+          [
+            "^\\."
+          ]
+        ]
+      }
+    ]
   },
   "env": {
     "browser": true,
-    "node": true,
-    "jest/globals": true
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
   }
 }
