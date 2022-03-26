@@ -16,8 +16,8 @@ describe("[mars-rover]", () => {
     ${"MMRMMLM"}      | ${"2:3:N"}
     ${"LM"}           | ${"9:0:W"}
     ${"RRM"}          | ${"0:9:S"}
-    ${"RMMMMMMMMMMM"} | ${"1:0:E"}
-    ${"MMMMMMMMMMM"}  | ${"0:1:N"}
+    ${"RMMMMMMMMMMM"} | ${"0:0:E"}
+    ${"MMMMMMMMMMM"}  | ${"0:0:N"}
   `("when receive command $commands", ({ commands, expectedPosition }) => {
     it(`should move to ${expectedPosition}`, () => {
       const rover = marsRover();

@@ -23,12 +23,13 @@ function rotateLeft(rover: Rover): Rover {
 }
 
 function move(rover: Rover): Rover {
-  if (rover.direction === "N") return { ...rover, y: (rover.y + 1) % 10 };
+  if (rover.direction === "N")
+    return { ...rover, y: rover.y < 10 ? rover.y + 1 : 0 };
   if (rover.direction === "W")
     return { ...rover, x: rover.x > 0 ? rover.x - 1 : 10 - 1 };
   if (rover.direction === "S")
     return { ...rover, y: rover.y > 0 ? rover.y - 1 : 10 - 1 };
-  return { ...rover, x: (rover.x + 1) % 10 };
+  return { ...rover, x: rover.x < 10 ? rover.x + 1 : 0 };
 }
 
 export const marsRover = (): MarsRover => {
