@@ -10,41 +10,50 @@ interface Player {
   score: number;
 }
 
-const afterFourteen = (
-  isDifferenceBiggerThan1: boolean,
-  isPlayer1Winning: boolean,
-  isEqual: boolean
-): string => {
-  if (isEqual) return "deuce";
-
-  if (!isDifferenceBiggerThan1)
-    return isPlayer1Winning ? "advantage player1" : "advantage player2";
-
-  return isPlayer1Winning ? "game player1" : "game player2";
+const getDifference = (
+  playerOneScore: number,
+  playerTwoScore: number
+): boolean => {
+  if (playerOneScore > playerTwoScore)
+    return playerOneScore - playerTwoScore > 1;
+  return playerTwoScore - playerOneScore > 1;
 };
 
-const calculate = (player1: Player, player2: Player): string => {
-  const isAfterFourteen = player1.score > 3 || player2.score > 3;
+const afterFourteen = (playerOne: Player, playerTwo: Player): string => {
+  const isDifferenceBiggerThanOne = getDifference(
+    playerOne.score,
+    playerTwo.score
+  );
 
-  const isDifferenceBiggerThanOne =
-    player1.score > player2.score
-      ? player1.score - player2.score > 1
-      : player2.score - player1.score > 1;
+  const isEqual = playerOne.score === playerTwo.score;
 
-  const isEqual = player1.score === player2.score;
+  const isPlayerOneWinning = playerOne.score > playerTwo.score;
 
-  const isPlayer1Winning = player1.score > player2.score;
+  if (isEqual) return "Deuce";
+
+  if (!isDifferenceBiggerThanOne)
+    return isPlayerOneWinning
+      ? `Advantage to ${playerOne.name}`
+      : `Advantage to ${playerTwo.name}`;
+
+  return isPlayerOneWinning
+    ? `Game to ${playerOne.name}`
+    : `Game to ${playerTwo.name}`;
+};
+
+const calculate = (playerOne: Player, playerTwo: Player): string => {
+  const isAfterFourteen = playerOne.score > 3 || playerTwo.score > 3;
 
   if (!isAfterFourteen)
-    return `${mapScore[player1.score]}:${mapScore[player2.score]}`;
+    return `${mapScore[playerOne.score]}:${mapScore[playerTwo.score]}`;
 
-  return afterFourteen(isDifferenceBiggerThanOne, isPlayer1Winning, isEqual);
+  return afterFourteen(playerOne, playerTwo);
 };
 
 export function play(score: number[]): string {
-  const player1: Player = { name: "player1", score: score[0] };
+  const rios: Player = { name: "Marcelo Rios", score: score[0] };
 
-  const player2: Player = { name: "player2", score: score[1] };
+  const agassi: Player = { name: "Andre Agassi", score: score[1] };
 
-  return calculate(player1, player2);
+  return calculate(rios, agassi);
 }
