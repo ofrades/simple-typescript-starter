@@ -15,12 +15,12 @@ const getDifference = (
   playerTwoScore: number
 ): boolean => {
   if (playerOneScore > playerTwoScore)
-    return playerOneScore - playerTwoScore > 1;
-  return playerTwoScore - playerOneScore > 1;
+    return playerOneScore - playerTwoScore < 2;
+  return playerTwoScore - playerOneScore < 2;
 };
 
 const afterFourteen = (playerOne: Player, playerTwo: Player): string => {
-  const isDifferenceBiggerThanOne = getDifference(
+  const isDifferenceSmallerThanTwo = getDifference(
     playerOne.score,
     playerTwo.score
   );
@@ -31,7 +31,7 @@ const afterFourteen = (playerOne: Player, playerTwo: Player): string => {
 
   if (isEqual) return "Deuce";
 
-  if (!isDifferenceBiggerThanOne)
+  if (isDifferenceSmallerThanTwo)
     return isPlayerOneWinning
       ? `Advantage to ${playerOne.name}`
       : `Advantage to ${playerTwo.name}`;

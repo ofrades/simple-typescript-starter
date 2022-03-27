@@ -2,14 +2,18 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
-    "lib": ["esnext"],
-    "allowJs": true,
+    "lib": [
+      "esnext"
+    ],
     "strict": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["node", "@types/jest"]
+    "types": [
+      "node",
+      "@types/jest"
+    ]
   }
 }
